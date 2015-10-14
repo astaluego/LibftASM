@@ -6,7 +6,7 @@
 /*   By: aderuell <aderuell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/02 15:34:28 by aderuell          #+#    #+#             */
-/*   Updated: 2015/10/14 17:04:13 by aderuell         ###   ########.fr       */
+/*   Updated: 2015/10/14 18:11:05 by aderuell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int			ft_tolower(int c);
 int			ft_puts(char *str);
 
 void		*ft_memset(void *b, int c, size_t len);
-int			ft_strlen(char *str);
+size_t		ft_strlen(char *str);
 
 void		test_unitaire_bzero(char *str, int dec, size_t size)
 {
@@ -303,12 +303,28 @@ void		test_puts(void)
 	printf("\n");
 }
 
+void		test_unitaire_strlen(char *str)
+{
+	printf("[%s] = %lu\n", str, strlen(str));
+}
+
+void		test_strlen(void)
+{
+	printf("\033[35m___FT_STRLEN_______________________________________\033[00m\n\n");
+
+	test_unitaire_strlen("HELLO");
+	test_unitaire_strlen("Dans cette deuxième partie, vous devez recoder en\ncore des fonctions de la libc, mais avec les Instru\nction Repeat String Operations.");
+	test_unitaire_strlen("");
+	printf("\n");
+}
+
 int		main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
 
 	test_bzero();
+	
 	//test_strcat();
 	test_isalpha();
 	test_isdigit();
@@ -318,5 +334,7 @@ int		main(int ac, char **av)
 	test_toupper();
 	test_tolower();
 	test_puts();
+	//test_memset();
+	test_strlen();
 	return (0);
 }
