@@ -6,7 +6,7 @@
 /*   By: aderuell <aderuell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/02 15:34:28 by aderuell          #+#    #+#             */
-/*   Updated: 2015/10/14 18:11:05 by aderuell         ###   ########.fr       */
+/*   Updated: 2015/10/16 18:18:17 by aderuell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int			ft_toupper(int c);
 int			ft_tolower(int c);
 int			ft_puts(char *str);
 
-void		*ft_memset(void *b, int c, size_t len);
 size_t		ft_strlen(char *str);
+void		*ft_memset(void *b, int c, size_t len);
+void		*ft_memcpy(void *dst, void *src, size_t n);
 
 void		test_unitaire_bzero(char *str, int dec, size_t size)
 {
@@ -72,27 +73,26 @@ void		test_bzero(void)
 	test_unitaire_bzero(str4, 11, 3);
 }
 
-/*void		test_unitaire_strcat(char *str, char *str2)
+void		test_unitaire_strcat(char *str2)
 {
-	printf("str = [\033[32m%s\033[00m]\n", str);
-	printf("str2 = [\033[32m%s\033[00m]\n", str2);
-	printf("result = [\033[32m%s\033[00m]\n", strcat(str, str2));
-	printf("\n");
+	char	*str;
+
+	str = malloc(sizeof(char) * (ft_strlen(str2) + 3));
+	str[0] = 'h';
+	str[1] = 'e';
+	str[2] = '\0';
+	printf("AVANT : \n");
+	printf("[\033[32m%s\033[00m] + [\033[32m%s\033[00m]\n", str, str2);
+	printf("APRES : \n");
+	printf("[\033[32m%s\033[00m]\n\n", ft_strcat(str, str2));
 }
 
 void		test_strcat(void)
 {
-	char	str[] = "hello";
-	char	str2[] = " le monde";
-	char	str3[] = "";
-	char	*str4;
-
-	str4 = NULL;
 	printf("\033[35m___FT_STRCAT_____________________________________\033[00m\n\n");
-	test_unitaire_strcat(str, str2);
-	test_unitaire_strcat(str2, str3);
-	test_unitaire_strcat(str, str4);
-}*/
+	test_unitaire_strcat("llo");
+	test_unitaire_strcat("rcule");
+}
 
 void		test_unitaire_isalpha(int c)
 {
@@ -318,23 +318,67 @@ void		test_strlen(void)
 	printf("\n");
 }
 
+void		test_memcpy(void)
+{
+	printf("\033[35m___FT_MEMCPY_______________________________________\033[00m\n\n");
+
+	char 	str[2];
+	char 	str2[6];
+
+	ft_bzero(str, 2);
+	ft_bzero(str2, 6);
+
+	printf("AVANT :\n");
+	printf("Str1 size: %d, Content: %s\n", (int)ft_strlen(str), str);
+	printf("Str2 size: %d, Content: %s\n", (int)ft_strlen(str2), str2);
+	ft_memcpy((void*)str, (void*)"a", 1);
+	ft_memcpy((void*)str2, (void*)"hello", 5);
+	printf("\nAPRES :\n");
+	printf("Str1 size: %d, Content: %s\n", (int)ft_strlen(str), str);
+	printf("Str2 size: %d, Content: %s\n\n", (int)ft_strlen(str2), str2);
+}
+
+
+void		test_unitaire_memset(char *str, char c, size_t size)
+{
+	printf("ft_memset(%s, %c, %zu)\n", str, c, size);
+	printf("AVANT : ");
+	printf("\033[32m%s\033[00m\n",str);
+	printf("APRES : ");
+	str = ft_memset(strdup(str), c, size);
+	printf("\033[32m%s\033[00m\n",str);
+	printf("\n\n");
+}
+
+
+void		test_memset(void)
+{
+	printf("\033[35m___FT_MEMSET_______________________________________\033[00m\n\n");
+
+	test_unitaire_memset("abcd", 'A', 1);
+	test_unitaire_memset("abcd", 'B', 3);
+	test_unitaire_memset("abcd", 'C', 5);
+}
+
 int		main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
 
 	test_bzero();
-	
-	//test_strcat();
-	test_isalpha();
-	test_isdigit();
-	test_isalnum();
-	test_isascii();
-	test_isprint();
-	test_toupper();
-	test_tolower();
+	test_strcat();
+	//test_isalpha();
+	//test_isdigit();
+	//test_isalnum();
+	//test_isascii();
+	//test_isprint();
+	//test_toupper();
+	//test_tolower();
 	test_puts();
-	//test_memset();
+
 	test_strlen();
+	test_memset();
+	test_memcpy();
+	////test_strdup();
 	return (0);
 }

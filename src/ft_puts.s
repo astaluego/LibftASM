@@ -13,6 +13,7 @@ section .text
 	extern _ft_strlen
 
 _ft_puts:
+	enter 0,0
 	cmp rdi, 0x0
 	je null
 print:
@@ -23,11 +24,8 @@ print:
 	mov rdx, rax						;len
 	mov rax, MACH_SYSCALL(WRITE)
 	syscall
-	jc error
-	js error	
-	push 10
-	mov rdi, rsp
-	mov rsi, rdi
+	push 0xa
+	mov rsi, rsp 
 	mov rdi, STDOUT						;output
 	mov rdx, 0x1
 	mov rax, MACH_SYSCALL(WRITE)
@@ -37,9 +35,11 @@ print:
 	jmp end
 error:
 	mov rax, EOF
+	leave
 	ret
 end:
 	mov rax, OK
+	leave
 	ret
 null:
 	lea rdi, [rel nll]
