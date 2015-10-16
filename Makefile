@@ -6,7 +6,7 @@
 #    By: aderuell <aderuell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/02 15:45:13 by aderuell          #+#    #+#              #
-#    Updated: 2015/10/16 17:17:08 by aderuell         ###   ########.fr        #
+#    Updated: 2015/10/16 20:08:46 by aderuell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRC_NAME =	ft_bzero.s\
 			ft_strlen.s\
 			ft_puts.s\
 			ft_memset.s\
-			ft_memcpy.s
+			ft_memcpy.s\
+			ft_strdup.s
 
 OBJ_PATH = ./obj/
 OBJ_NAME = $(SRC_NAME:.s=.o)

@@ -6,7 +6,7 @@
 /*   By: aderuell <aderuell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/02 15:34:28 by aderuell          #+#    #+#             */
-/*   Updated: 2015/10/16 18:18:17 by aderuell         ###   ########.fr       */
+/*   Updated: 2015/10/16 20:11:16 by aderuell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int			ft_puts(char *str);
 size_t		ft_strlen(char *str);
 void		*ft_memset(void *b, int c, size_t len);
 void		*ft_memcpy(void *dst, void *src, size_t n);
+char		*ft_strdup(char *s1);
 
 void		test_unitaire_bzero(char *str, int dec, size_t size)
 {
@@ -360,6 +361,22 @@ void		test_memset(void)
 	test_unitaire_memset("abcd", 'C', 5);
 }
 
+void 	test_strdup(void)
+{
+	char 	*str;
+	char 	f[] = "h";
+	char 	s[] = "hello";
+	char 	t[] = "";
+
+	printf("\033[35m___FT_STRDUP_______________________________________\033[00m\n\n");
+	str = ft_strdup(f);
+	printf("Str after strdup (\"%s\") %d\n", str, (int)ft_strlen(str));
+	str = ft_strdup(s);
+	printf("Str after strdup (\"%s\") %d\n", str, (int)ft_strlen(str));
+	str = ft_strdup(t);
+	printf("Str after strdup (\"%s\") %d\n\n", str, (int)ft_strlen(str));
+}
+
 int		main(int ac, char **av)
 {
 	(void)ac;
@@ -379,6 +396,6 @@ int		main(int ac, char **av)
 	test_strlen();
 	test_memset();
 	test_memcpy();
-	////test_strdup();
+	test_strdup();
 	return (0);
 }
