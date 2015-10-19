@@ -6,7 +6,7 @@
 /*   By: aderuell <aderuell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/19 16:06:31 by aderuell          #+#    #+#             */
-/*   Updated: 2015/10/19 16:53:40 by aderuell         ###   ########.fr       */
+/*   Updated: 2015/10/19 19:01:55 by aderuell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ size_t		ft_strlen(char *str);
 void		*ft_memset(void *b, int c, size_t len);
 void		*ft_memcpy(void *dst, void *src, size_t n);
 char		*ft_strdup(char *s1);
+
+void		ft_cat(int fd);
 
 void		test_bzero(void);
 void		test_strcat(void);

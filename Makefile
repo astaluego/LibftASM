@@ -6,7 +6,7 @@
 #    By: aderuell <aderuell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/02 15:45:13 by aderuell          #+#    #+#              #
-#    Updated: 2015/10/19 16:54:33 by aderuell         ###   ########.fr        #
+#    Updated: 2015/10/19 19:23:20 by aderuell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRC_NAME =	ft_bzero.s\
 			ft_puts.s\
 			ft_memset.s\
 			ft_memcpy.s\
-			ft_strdup.s
+			ft_strdup.s\
+			ft_cat.s
 
 OBJ_PATH = ./obj/
 OBJ_NAME = $(SRC_NAME:.s=.o)
@@ -60,6 +61,6 @@ fclean: clean
 	@rm -fv a.out
 
 test: all
-	gcc src/main.c libfts.a src/libasm.h src/test.c
+	gcc  src/main.c libfts.a src/libasm.h src/test.c
 
 re: fclean all

@@ -6,11 +6,12 @@
 /*   By: aderuell <aderuell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/02 15:34:28 by aderuell          #+#    #+#             */
-/*   Updated: 2015/10/19 16:06:21 by aderuell         ###   ########.fr       */
+/*   Updated: 2015/10/19 19:10:11 by aderuell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libasm.h"
+#include <fcntl.h>
 
 void	ft_choose(int code)
 {
@@ -75,7 +76,7 @@ int		main(int ac, char **av)
 
 	while (42)
 	{
-		printf("\033[35m___________________________________________________\033[00m\n\n");
+		/*printf("\033[35m___________________________________________________\033[00m\n\n");
 		printf("\033[35mChoose a test :\033[00m\n\n");
 		printf("\t\033[36m 1 => ft_bzero\n");
 		printf("\t 2 => ft_strcat\n");
@@ -96,7 +97,24 @@ int		main(int ac, char **av)
 		fgets(str, 3, fdopen(0, "r"));
 		printf("\n");
 		ft_choose(atoi(str));	
-		fgets(str, 3, fdopen(0, "r"));
+		fgets(str, 3, fdopen(0, "r"));*/
+		//test_strdup();
+		//	test_bzero();
+		//	test_strcat();
+		//	test_isalpha();
+		//	test_isdigit();
+		//	test_isalnum();
+		//	test_isascii();
+		//	test_isprint();
+		//	test_toupper();
+		//	test_tolower();
+		//	test_puts();
+		//	test_strlen();
+		//	test_memset();
+		//	test_memcpy();
+		int		fd;
+		fd = open("../doc/albert.txt", O_RDWR);
+		ft_cat(fd);
 	}
 	return (0);
 }
