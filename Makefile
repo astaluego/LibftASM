@@ -6,7 +6,7 @@
 #    By: aderuell <aderuell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/02 15:45:13 by aderuell          #+#    #+#              #
-#    Updated: 2015/10/16 20:08:46 by aderuell         ###   ########.fr        #
+#    Updated: 2015/10/19 16:54:33 by aderuell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,6 @@ fclean: clean
 	@rm -fv a.out
 
 test: all
-	gcc src/main.c libfts.a
+	gcc src/main.c libfts.a src/libasm.h src/test.c
 
 re: fclean all

@@ -5,6 +5,8 @@ section .text
 	extern _ft_strcat
 
 _ft_strdup:
+	push rbp
+	mov rbp, rsp
 	mov r12, rdi
 	call _ft_strlen
 	mov r13, rax
@@ -14,4 +16,5 @@ _ft_strdup:
 	mov rsi, r12
 	mov rdx, r13
 	call _ft_strcat
+	leave
 	ret
