@@ -6,7 +6,7 @@
 /*   By: aderuell <aderuell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/02 15:34:28 by aderuell          #+#    #+#             */
-/*   Updated: 2015/10/16 20:11:16 by aderuell         ###   ########.fr       */
+/*   Updated: 2015/10/19 15:24:19 by aderuell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,10 @@ void		test_unitaire_strcat(char *str2)
 	str[0] = 'h';
 	str[1] = 'e';
 	str[2] = '\0';
-	printf("AVANT : \n");
+	printf("ft_strcat(\"%s\", \"%s\")\n", str, str2);
+	printf("AVANT : ");
 	printf("[\033[32m%s\033[00m] + [\033[32m%s\033[00m]\n", str, str2);
-	printf("APRES : \n");
+	printf("APRES : ");
 	printf("[\033[32m%s\033[00m]\n\n", ft_strcat(str, str2));
 }
 
@@ -100,10 +101,11 @@ void		test_unitaire_isalpha(int c)
 	int		i;
 
 	i = ft_isalpha(c);
+	printf("ft_isalpha(%d) => ", c);
 	if (i == 1)
-		printf("[%3d][%c] = \033[32mTRUE\033[00m\n", c, c);
+		printf("[%c] = \033[32mTRUE\033[00m\n", c);
 	else
-		printf("[%3d][%c] = \033[31mFALSE\033[00m\n", c, c);
+		printf("[%c] = \033[31mFALSE\033[00m\n", c);
 }
 
 void		test_isalpha(void)
@@ -132,10 +134,11 @@ void		test_unitaire_isdigit(int c)
 	int		i;
 
 	i = ft_isdigit(c);
+	printf("ft_isdigit(%d) => ", c);
 	if (i == 1)
-		printf("[%3d][%c] = \033[32mTRUE\033[00m\n", c, c);
+		printf("[%c] = \033[32mTRUE\033[00m\n", c);
 	else
-		printf("[%3d][%c] = \033[31mFALSE\033[00m\n", c, c);
+		printf("[%c] = \033[31mFALSE\033[00m\n", c);
 }
 
 void		test_isdigit(void)
@@ -158,10 +161,11 @@ void		test_unitaire_isalnum(int c)
 	int		i;
 
 	i = ft_isalnum(c);
+	printf("ft_alnum(%d) => ", c);
 	if (i == 1)
-		printf("[%3d][%c] = \033[32mTRUE\033[00m\n", c, c);
+		printf("[%c] = \033[32mTRUE\033[00m\n", c);
 	else
-		printf("[%3d][%c] = \033[31mFALSE\033[00m\n", c, c);
+		printf("[%c] = \033[31mFALSE\033[00m\n", c);
 }
 
 void		test_isalnum(void)
@@ -194,10 +198,11 @@ void		test_unitaire_isascii(int c)
 	int		i;
 
 	i = ft_isascii(c);
+	printf("ft_isascii(%d) => ", c);
 	if (i == 1)
-		printf("[%3d][%c] = \033[32mTRUE\033[00m\n", c, c);
+		printf("[%c] = \033[32mTRUE\033[00m\n", c);
 	else
-		printf("[%3d][%c] = \033[31mFALSE\033[00m\n", c, c);
+		printf("[%c] = \033[31mFALSE\033[00m\n", c);
 }
 
 void		test_isascii(void)
@@ -218,10 +223,11 @@ void		test_unitaire_isprint(int c)
 	int		i;
 
 	i = ft_isprint(c);
+	printf("ft_isprint(%d) => ", c);
 	if (i == 1)
-		printf("[%3d][%c] = \033[32mTRUE\033[00m\n", c, c);
+		printf("[%c] = \033[32mTRUE\033[00m\n", c);
 	else
-		printf("[%3d][%c] = \033[31mFALSE\033[00m\n", c, c);
+		printf("[%c] = \033[31mFALSE\033[00m\n", c);
 }
 
 void		test_isprint(void)
@@ -246,10 +252,11 @@ void		test_unitaire_toupper(int c)
 	int		i;
 
 	i = ft_toupper(c);
+	printf("ft_toupper(%3d) => ", c);
 	if (i != c)
-		printf("[%3d][%c] = \033[32m[%c]\033[00m\n", c, c, i);
+		printf("[%c] = \033[32m[%c]\033[00m\n", c, i);
 	else
-		printf("[%3d][%c] = \033[31m[%c]\033[00m\n", c, c, i);
+		printf("[%c] = \033[31m[%c]\033[00m\n", c, i);
 }
 
 void		test_toupper(void)
@@ -269,10 +276,11 @@ void		test_unitaire_tolower(int c)
 	int		i;
 
 	i = ft_tolower(c);
+	printf("ft_tolower(%3d) => ", c);
 	if (i != c)
-		printf("[%3d][%c] = \033[32m[%c]\033[00m\n", c, c, i);
+		printf("[%c] = \033[32m[%c]\033[00m\n", c, i);
 	else
-		printf("[%3d][%c] = \033[31m[%c]\033[00m\n", c, c, i);
+		printf("[%c] = \033[31m[%c]\033[00m\n", c, i);
 }
 
 void		test_tolower(void)
@@ -291,7 +299,9 @@ void		test_tolower(void)
 
 void		test_unitaire_puts(char *str)
 {
+	printf("ft_puts(\"%s\")\n", str);
 	ft_puts(str);
+	printf("\n");
 }
 
 void		test_puts(void)
@@ -306,7 +316,7 @@ void		test_puts(void)
 
 void		test_unitaire_strlen(char *str)
 {
-	printf("[%s] = %lu\n", str, strlen(str));
+	printf("ft_strlen(\"%s\") = \033[32m%lu\033[00m\n\n", str, strlen(str));
 }
 
 void		test_strlen(void)
@@ -319,30 +329,9 @@ void		test_strlen(void)
 	printf("\n");
 }
 
-void		test_memcpy(void)
-{
-	printf("\033[35m___FT_MEMCPY_______________________________________\033[00m\n\n");
-
-	char 	str[2];
-	char 	str2[6];
-
-	ft_bzero(str, 2);
-	ft_bzero(str2, 6);
-
-	printf("AVANT :\n");
-	printf("Str1 size: %d, Content: %s\n", (int)ft_strlen(str), str);
-	printf("Str2 size: %d, Content: %s\n", (int)ft_strlen(str2), str2);
-	ft_memcpy((void*)str, (void*)"a", 1);
-	ft_memcpy((void*)str2, (void*)"hello", 5);
-	printf("\nAPRES :\n");
-	printf("Str1 size: %d, Content: %s\n", (int)ft_strlen(str), str);
-	printf("Str2 size: %d, Content: %s\n\n", (int)ft_strlen(str2), str2);
-}
-
-
 void		test_unitaire_memset(char *str, char c, size_t size)
 {
-	printf("ft_memset(%s, %c, %zu)\n", str, c, size);
+	printf("ft_memset(\"%s\", %c, %zu)\n", str, c, size);
 	printf("AVANT : ");
 	printf("\033[32m%s\033[00m\n",str);
 	printf("APRES : ");
@@ -361,41 +350,139 @@ void		test_memset(void)
 	test_unitaire_memset("abcd", 'C', 5);
 }
 
+void		test_unitaire_memcpy(int size, char *str, int len)
+{	
+	char 	str2[size];
+
+	ft_bzero(str2, size);
+	printf("ft_memcpy(\"%s\", \"%s\", %d)\n", str2, str, len);
+	printf("AVANT :\n");
+	printf("- Size = %d\n- Content = [\033[32m%s\033[00m]\n", (int)ft_strlen(str2), str2);
+	ft_memcpy((void*)str2, (void*)str, len);
+	printf("APRES :\n");
+	printf("- Size = %d\n- Content = [\033[32m%s\033[00m]\n\n", (int)ft_strlen(str2), str2);
+}
+
+void		test_memcpy(void)
+{
+	printf("\033[35m___FT_MEMCPY_______________________________________\033[00m\n\n");
+
+	test_unitaire_memcpy(2, "a", 1);
+	test_unitaire_memcpy(6, "hello", 5);
+}
+
+void	test_unitaire_strdup(char *str2)
+{
+	char	*str;
+	
+	printf("str = ft_strdup(\"%s\")\n", str2);
+	printf("AVANT : ");
+	printf("[\033[32m%s\033[00m]\n", str);
+	printf("APRES : ");
+	str = ft_strdup(str2);
+	printf("[\033[32m%s\033[00m]\n\n", str);
+}
+
+
 void 	test_strdup(void)
 {
-	char 	*str;
 	char 	f[] = "h";
 	char 	s[] = "hello";
-	char 	t[] = "";
+	char 	t[] = "ECOLE 42";
+	char 	h[] = "";
 
 	printf("\033[35m___FT_STRDUP_______________________________________\033[00m\n\n");
-	str = ft_strdup(f);
-	printf("Str after strdup (\"%s\") %d\n", str, (int)ft_strlen(str));
-	str = ft_strdup(s);
-	printf("Str after strdup (\"%s\") %d\n", str, (int)ft_strlen(str));
-	str = ft_strdup(t);
-	printf("Str after strdup (\"%s\") %d\n\n", str, (int)ft_strlen(str));
+	test_unitaire_strdup(f);
+	test_unitaire_strdup(s);
+	test_unitaire_strdup(t);
+	test_unitaire_strdup(h);
+}
+
+void	ft_choose(int code)
+{
+	switch (code)
+	{
+		case 1:
+			test_bzero();
+			break;
+		case 2:
+			test_strcat();
+			break;
+		case 3:
+			test_isalpha();
+			break;
+		case 4:
+			test_isdigit();
+			break;
+		case 5:
+			test_isalnum();
+			break;
+		case 6:
+			test_isascii();
+			break;
+		case 7:
+			test_isprint();
+			break;
+		case 8:
+			test_toupper();
+			break;
+		case 9:
+			test_tolower();
+			break;
+		case 10:
+			test_puts();
+			break;
+		case 11:
+			test_strlen();
+			break;
+		case 12:
+			test_memset();
+			break;
+		case 13:
+			test_memcpy();
+			break;
+		case 14:
+			test_strdup();
+			break;
+		case 15:
+			exit(1);
+			break;
+		default:
+			return;
+	}
 }
 
 int		main(int ac, char **av)
 {
+	char	str[4];
+	FILE	*fichier = NULL;
 	(void)ac;
 	(void)av;
 
-	test_bzero();
-	test_strcat();
-	//test_isalpha();
-	//test_isdigit();
-	//test_isalnum();
-	//test_isascii();
-	//test_isprint();
-	//test_toupper();
-	//test_tolower();
-	test_puts();
-
-	test_strlen();
-	test_memset();
-	test_memcpy();
-	test_strdup();
+	while (42)
+	{
+		printf("\033[35m___________________________________________________\033[00m\n\n");
+		printf("\033[35mChoose a test :\033[00m\n\n");
+		printf("\t\033[36m 1 => ft_bzero\n");
+		printf("\t 2 => ft_strcat\n");
+		printf("\t 3 => ft_isalpha\n");
+		printf("\t 4 => ft_isdigit\n");
+		printf("\t 5 => ft_isalnum\n");
+		printf("\t 6 => ft_isascii\n");
+		printf("\t 7 => ft_isprint\n");
+		printf("\t 8 => ft_toupper\n");
+		printf("\t 9 => ft_tolower\n");
+		printf("\t10 => ft_puts\n\n");
+		printf("\t11 => ft_strlen\n");
+		printf("\t12 => ft_memset\n");
+		printf("\t13 => ft_memcpy\n");
+		printf("\t14 => ft_strdup\n\n");
+		printf("\t15 EXIT\033[00m\n\n");
+		printf("Tap the code : ");
+		fgets(str, 3, fdopen(0, "r"));
+		printf("\n");
+		ft_choose(atoi(str));	
+		fgets(str, 3, fdopen(0, "r"));
+	}
 	return (0);
 }
