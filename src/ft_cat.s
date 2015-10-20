@@ -13,6 +13,8 @@ section .text
 _ft_cat:
 	push rbp
 	mov rbp, rsp
+	cmp rdi, 0x0
+	jl end
 	mov r15, rdi
 while:
 	mov rdi, r15
@@ -26,5 +28,6 @@ while:
 	syscall
 	cmp rax, BUFF
 	je while
+end:
 	leave
 	ret
