@@ -1,0 +1,27 @@
+rax    ax      ah      al          return value
+rbx    ebx     bx      bh bl       callee saved
+rdi    edi     di      dil         arg 1
+rsi    esi     si      sil         arg 2
+rdx    edx     dx      dh dl       arg 3 + return 2
+rcx    ecx     cx      ch cl       arg 4 + counter
+rbp    ebp     bp      bpl         base ptr - callee saved
+rsp    esp     sp      spl         stack ptr - callee saved
+r8     r8d     r8w     r8b         arg 5
+r9     r9d     r9w     r9b         arg 6
+r10    r10d    r10w    r10b        arg 7
+r11    r11d    r11w    r11b        tmp
+r12    r12d    r12w    r12b        callee saved
+r13    r13d    r13w    r13b        callee saved
+r14    r14d    r14w    r14b        callee saved
+r15    r15d    r15w    r15b        callee saved
+rip                                instruction pointer
+mov a, b : a = b
+inc a : a++
+dec a : a--
+cmp a, b : compare les deux nombres, met les resultat dans les flag
+jl adresse : jump a l'adresse si le dernier cmp : a < b
+jg adresse : idem
+je adresse : idem
+jne adresse : idem
+3	AUE_NULL	ALL	{ user_ssize_t read(int fd, user_addr_t cbuf, user_size_t nbyte); } 
+4	AUE_NULL	ALL	{ user_ssize_t write(int fd, user_addr_t cbuf, user_size_t nbyte); } 
