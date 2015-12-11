@@ -3,64 +3,107 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aderuell <aderuell@student.42.fr>          +#+  +:+       +#+         #
+#    By: aderuell <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/10/02 15:45:13 by aderuell          #+#    #+#              #
-#    Updated: 2015/10/19 19:23:20 by aderuell         ###   ########.fr        #
+#    Created: 2015/12/11 14:05:06 by aderuell          #+#    #+#              #
+#    Updated: 2015/12/11 14:44:17 by aderuell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC_PATH = ./src/
-SRC_NAME =	ft_bzero.s\
-			ft_strcat.s\
-			ft_isalpha.s\
-			ft_isdigit.s\
-			ft_isalnum.s\
-			ft_isascii.s\
-			ft_isprint.s\
-			ft_toupper.s\
-			ft_tolower.s\
-			ft_strlen.s\
-			ft_puts.s\
-			ft_memset.s\
-			ft_memcpy.s\
-			ft_strdup.s\
-			ft_cat.s
+NAME			= libfts.a
+MINE			= mine
+TEST_CAT		= cat
+QPEREZ			= qperez
 
-OBJ_PATH = ./obj/
-OBJ_NAME = $(SRC_NAME:.s=.o)
+CC				= gcc
+CC_ASM			= ~/.brew/bin/nasm
+FLAG			= -Wall -Werror -Wextra -pedantic
+INCS			= -I ./inc
+LIBS			=
 
-NAME = libfts.a
+SRC				= $(DIR_SRC)/ft_bzero.s \
+				  $(DIR_SRC)/ft_strlen.s \
+				  $(DIR_SRC)/ft_isalpha.s \
+				  $(DIR_SRC)/ft_isdigit.s \
+				  $(DIR_SRC)/ft_isalnum.s \
+				  $(DIR_SRC)/ft_isascii.s \
+				  $(DIR_SRC)/ft_isprint.s \
+				  $(DIR_SRC)/ft_toupper.s \
+				  $(DIR_SRC)/ft_tolower.s \
+				  $(DIR_SRC)/ft_puts.s \
+				  $(DIR_SRC)/ft_strcat.s \
+				  $(DIR_SRC)/ft_memset.s \
+				  $(DIR_SRC)/ft_memcpy.s \
+				  $(DIR_SRC)/ft_strdup.s \
+				  $(DIR_SRC)/ft_cat.s \
 
-CC = nasm
-CFLAGS = -f macho64
+DIR_SRC			= src
+DIR_INC			= inc
+DIR_OBJ_ASM		= .obj
+DIR_LIST		= src
+OBJ_ASM			= $(addprefix $(DIR_OBJ_ASM)/, $(SRC:.s=.o))
+OBJ				= $(addprefix $(DIR_OBJ)/, $(SRC:.c=.o))
 
-LD = ar rc
+all : $(NAME)
 
-SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
-OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
+$(NAME) : $(DIR_OBJ_ASM) $(OBJ_ASM)
+	@ar rc $(NAME) $(OBJ_ASM)
+	@ranlib $(NAME)
+	@printf "\e[32m------------------------------------------------------\e[0m\n"
+	@printf '\e[34m%-51s\e[0m\e[32m[✔]\e[0m\n' "created libfts.a"
+	@printf "\e[32m------------------------------------------------------\e[0m\n"
 
-all: $(NAME)
+$(addprefix $(DIR_OBJ_ASM)/, %.o) : %.s $(DIR_INC)
+	@printf "compiling \e[33m%-41s\e[0m" "$@"
+	@$(CC_ASM) -f macho64 -o $@ $<
+	@printf "\e[32m[✔]\e[0m\n"
 
-$(NAME): $(OBJ)
-	$(LD) $@ $(OBJ)
-	ranlib $@
-	@echo done!
+clean :
+	@if [ -e '$(DIR_OBJ_ASM)' ]; then \
+		/bin/rm	-rf $(DIR_OBJ); \
+		/bin/rm	-rf $(DIR_OBJ_ASM); \
+		printf "\e[32m[✔]\e[0m project %s cleaned.\n" $(NAME); \
+		fi
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.s
-	@mkdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
-	@echo .
-	$(CC) $(CFLAGS) $< -o $@
+fclean : clean
+	@if [ -e '$(NAME)' ]; then \
+		/bin/rm -f $(NAME); \
+		/bin/rm -f $(MINE); \
+		/bin/rm -f $(TEST_CAT); \
+		/bin/rm -f $(QPEREZ); \
+		printf "\e[32m[✔]\e[0m project %s fcleaned.\n" $(NAME); \
+		fi
 
-clean:
-	@rm -fv $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
+re : fclean all
 
-fclean: clean
-	@rm -fv $(NAME)
-	@rm -fv a.out
+$(DIR_OBJ_ASM) :
+	@/bin/mkdir $(DIR_OBJ_ASM); \
+		for DIR in $(DIR_LIST); \
+		do \
+		/bin/mkdir $(DIR_OBJ_ASM)/$$DIR; \
+		done
 
-test: all
-	gcc  src/main.c libfts.a src/libasm.h src/test.c
+$(DIR_OBJ) :
+	@/bin/mkdir $(DIR_OBJ); \
 
-re: fclean all
+test: $(MINE) $(TEST_CAT) $(QPEREZ)
+
+$(MINE): $(NAME)
+	@$(CC) $(INCS) -L . -lfts src_tests/main.c src_tests/mine.c -o $@
+	@printf "\e[32m------------------------------------------------------\e[0m\n"
+	@printf '\e[34m%-51s\e[0m\e[32m[✔]\e[0m\n' "created mine_test"
+	@printf "\e[32m------------------------------------------------------\e[0m\n"
+
+$(TEST_CAT): $(NAME)
+	@$(CC) $(INCS) -L . -lfts src_tests/main_cat.c -o $@
+	@printf "\e[32m------------------------------------------------------\e[0m\n"
+	@printf '\e[34m%-51s\e[0m\e[32m[✔]\e[0m\n' "created test_cat"
+	@printf "\e[32m------------------------------------------------------\e[0m\n"
+
+$(QPEREZ): $(NAME)
+	@$(CC) $(INCS) -L . -lfts src_tests/main_qperez.c -o $@
+	@printf "\e[32m------------------------------------------------------\e[0m\n"
+	@printf '\e[34m%-51s\e[0m\e[32m[✔]\e[0m\n' "created test_qperez"
+	@printf "\e[32m------------------------------------------------------\e[0m\n"
+
+.PHONY:	clean fclean re
