@@ -6,7 +6,7 @@
 /*   By: aderuell <aderuell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/02 15:34:28 by aderuell          #+#    #+#             */
-/*   Updated: 2015/12/11 14:46:31 by aderuell         ###   ########.fr       */
+/*   Updated: 2016/01/22 14:13:22 by aderuell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int		main(int ac, char **av)
 		fgets(str, 3, fdopen(0, "r"));
 		printf("\n");
 		ft_choose(atoi(str));	
-		fgets(str, 3, fdopen(0, "r"));
+		//fgets(str, 3, fdopen(0, "r"));
 	}
 	return (0);
 }
